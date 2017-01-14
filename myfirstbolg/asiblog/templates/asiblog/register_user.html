@@ -1,0 +1,9 @@
+<h1 align="center" style="color:#0000FF"> Welcome to Registration page </h1>
+
+<form action="" method="post">
+	{% csrf_token %}
+	{{form.as_p}}
+	<br><br>
+	<input type="submit" value="Submit" align="center">
+
+</form>

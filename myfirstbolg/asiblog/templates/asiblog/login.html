@@ -1,0 +1,16 @@
+<h1 align="center" style="color:#0000FF">Welcone to my first blog </h1>
+{%if error_message %}
+<p ><b> {{error_message}} </b></p>
+{% endif %}
+<p>If you already have account then Login</p>
+<form action="/accounts/auth_view/" method="post">
+{% csrf_token %}
+Username:
+<input type="text" name="username">
+<br><br>
+Password:
+<input type="password" name="password">
+<br><br>
+<input type="submit" value="Login">
+</form>
+<p>If you do not have an account please <a href="/accounts/register/ " > Sign Up first</a></p>

@@ -1,0 +1,62 @@
+<h1 align="center" style="color:#0000FF">Welcone to my first blog </h1>
+<button  id="myButton"  >Logout</button><br><br>
+
+<a href= "/asiblog/add"> <b>Add Post</b> </a>
+<hr>
+{% if postset %}
+
+	{% for post in postset %}
+		{% if post.publish %}
+		<div>
+
+		{% block title %} <b>{{post.title}}</b><br> <br> {% endblock %}
+		{% block content %} {{ post.body }} {% endblock %}
+			<ul>
+			<li> <p>Publish Date -> {{post.created}} </p></li>
+			<li> <p>Last Modified Date->{{post.modified}}</li>
+			</ul>
+			<h3><b>Tags</b> </h3>
+			{%for tag in post.tag_set.all%}
+
+			<p><a href="{{tag.slug}}">{{tag.slug}}</a></p>
+			{% endfor %}
+			
+			<a href= "/asiblog/{{post.id}}/delete"><b>Delete Post</b></a><br>
+			<a href= "/asiblog/{{post.id}}/edit/"><b>Edit Post</b></a>
+
+			<hr>
+		</div>
+		{% endif %}
+ 	{% endfor %}
+{% else %}
+ 	<p>No Post are available.</p>
+{% endif %}
+
+ {% if is_paginated %}
+        <div class="pagination" align="center">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+   
+{% else %}
+    
+    <p>No more page_obj :(</p>
+{% endif %}
+ 
+ <script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "/accounts/logout/";
+    };
+</script>
+
+
+

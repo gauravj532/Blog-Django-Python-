@@ -1,0 +1,26 @@
+
+<h3>Enter details or edit</h3>
+
+<form action="" method="post">
+{% csrf_token %}
+	{{form.title.label_tag}}
+	{{form.title}}
+	<br><br>
+	
+	{{form.body.label_tag}}
+	<br>
+	{{form.body}}
+	<br><br>
+	
+<input type="submit" value="Add Post" align="center">
+</form>
+<button  id="myButton"  >Cancle</button>
+<script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "/asiblog/";
+    };
+</script>
+
+
+
+
